@@ -52,5 +52,12 @@ namespace _3._CRUDWebAPI.Controllers
             var product = products.Find(product => product.Id == id);
             return product;
         }
+
+        [HttpPost]
+
+        public void Post([FromBody] Product product)
+        {
+            products.Add(product);
+        }
     }
 }
