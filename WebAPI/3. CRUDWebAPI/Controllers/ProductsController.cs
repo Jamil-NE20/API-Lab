@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using _2.CreateWebAPIScratch.Models;
+using _3._CRUDWebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace _2.CreateWebAPIScratch.Controllers
+namespace _3._CRUDWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        List<Product> products = new List<Product>()
+        private static List<Product> products = new List<Product>()
         {
             new Product
             {
@@ -41,7 +41,7 @@ namespace _2.CreateWebAPIScratch.Controllers
         };
 
         [HttpGet]
-        public IEnumerable <Product> Get()
+        public IEnumerable<Product> Get()
         {
             return products;
         }
@@ -52,7 +52,5 @@ namespace _2.CreateWebAPIScratch.Controllers
             var product = products.Find(product => product.Id == id);
             return product;
         }
-
-
     }
 }
