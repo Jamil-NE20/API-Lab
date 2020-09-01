@@ -59,5 +59,21 @@ namespace _3._CRUDWebAPI.Controllers
         {
             products.Add(product);
         }
+
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            var product = products.Where(p => p.Id == id);
+            products = products.Except(product).ToList();
+        }
+
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] Product product)
+        {
+            var existingProduct = products.Where(p => p.Id == id);
+            products = products.Except(existingProduct).ToList();
+            products.Add(product);
+        }
+
     }
 }
