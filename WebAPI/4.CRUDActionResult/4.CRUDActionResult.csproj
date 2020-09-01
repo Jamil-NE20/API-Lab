@@ -5,8 +5,4 @@
     <RootNamespace>_4.CRUDActionResult</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
