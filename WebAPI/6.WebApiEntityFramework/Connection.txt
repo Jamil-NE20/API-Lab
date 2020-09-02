@@ -1,7 +1,38 @@
 
 
 
-Scaffold-DBContext "Data Source=localhost\SQLEXPRESS;Initial Catalog=ShopTastic;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context ApiContext
+Scaffold-DBContext "Data Source=localhost\SQLEXPRESS;Initial Catalog=MyShop;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context ApiContext
+
+Data Source=localhost\SQLEXPRESS;Initial Catalog=MyShop;Integrated Security=True
 
 
-Data Source=localhost\SQLEXPRESS;Initial Catalog=ShopTastic;Integrated Security=True
+services.AddDbContext<ApiContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
+
+            services
+                .AddMvc(options => options.EnableEndpointRouting = false)
+                .SetCompatibilityVersion(CompatibilityVersion.Latest)
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling =
+                Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+"ConnectionStrings": {
+    "SqlConnection": "Data Source=localhost\\SQLEXPRESS;Initial Catalog=MyShop;Integrated Security=True"
+
+
+.Include(orders => orders.Customers)
+                .Include(orders => orders.OrderItems)
+                .ThenInclude(orders => orders.Products)
+                .ToListAsync();
+
+
+var orders = await _context.Orders
+                .Include(orders => orders.Customers)
+                .Include(orders => orders.OrderItems)
+                .ThenInclude(orders => orders.Products)
+                .Where(orders => orders.Id == id)
+                .FirstOrDefaultAsync();
+
+
+
+

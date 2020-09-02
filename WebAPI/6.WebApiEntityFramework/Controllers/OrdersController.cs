@@ -22,20 +22,26 @@ namespace _6.WebApiEntityFramework.Controllers
 
         // GET: api/Orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Orders>>> GetOrders(int id)
+        public async Task<ActionResult<IEnumerable<Orders>>> GetOrders()
         {
             return await _context.Orders
-                .Include(order=> order.Customers)
-                .Include(order => order.OrderItems)
-                .ThenInclude(order => order.Products)
-               .ToListAsync() ;
+                .Include(orders => orders.Customers)
+                .Include(orders => orders.OrderItems)
+                .ThenInclude(orders => orders.Products)
+                .ToListAsync();
+
         }
 
         // GET: api/Orders/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Orders>> GetOrders(string id)
         {
-            var orders = await _context.Orders.FindAsync(id);
+            var orders = await _context.Orders
+                 .Include(orders => orders.Customers)
+                 .Include(orders => orders.OrderItems)
+                 .ThenInclude(orders => orders.Products)
+                 .Where(orders => orders.Id == id)
+                 .FirstOrDefaultAsync();
 
             if (orders == null)
             {

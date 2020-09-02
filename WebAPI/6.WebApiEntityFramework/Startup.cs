@@ -29,7 +29,7 @@ namespace _6.WebApiEntityFramework
         {
             services.AddControllers();
             services.AddDbContext<ApiContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
+             options.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
 
             services
                 .AddMvc(options => options.EnableEndpointRouting = false)

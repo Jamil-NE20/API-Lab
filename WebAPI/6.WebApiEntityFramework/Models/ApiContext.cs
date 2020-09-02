@@ -26,7 +26,7 @@ namespace _6.WebApiEntityFramework.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -105,7 +105,7 @@ namespace _6.WebApiEntityFramework.Models
             {
                 entity.Property(e => e.Id).HasMaxLength(128);
 
-                entity.Property(e => e.Name).HasMaxLength(30);
+                entity.Property(e => e.Name).HasMaxLength(20);
 
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
             });
