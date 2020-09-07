@@ -8,9 +8,9 @@ namespace JsonCreateObject
 {
     class Student
     {
-        public string Name;
-        public string Class;
-        public string[] Subjects;
-        public int RollNo;
+        public string Name = "Jamil Uddin";
+        public string Class = " Front-End Developer";
+        public string[] Subjects = { "HTML", "JavaScript", "CSS" };
+        public int RollNo = 1223344;
     }
 }
